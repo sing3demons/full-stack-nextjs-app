@@ -2,6 +2,7 @@
 
 import { Metadata } from "next";
 import Link from "next/link";
+import AboutContent from '../ui/AboutContent';
 
 export const metadata: Metadata = {
   title: "เกี่ยวกับเรา",
@@ -10,11 +11,8 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div>
-      <h1>Hello Page About</h1>
-      <div>
-        <Link href="../" replace={true}>กลับหน้าหลัก</Link>
-      </div>
-    </div>
+   <>
+   <AboutContent/>
+    </>
   );
 }

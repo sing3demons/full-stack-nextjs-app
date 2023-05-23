@@ -32,6 +32,8 @@ import {
   IconCoin,
   IconChevronDown,
 } from '@tabler/icons-react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 const useStyles = createStyles((theme) => ({
   link: {
@@ -44,6 +46,30 @@ const useStyles = createStyles((theme) => ({
     color: theme.colorScheme === 'dark' ? theme.white : theme.black,
     fontWeight: 500,
     fontSize: theme.fontSizes.sm,
+
+    [theme.fn.smallerThan('sm')]: {
+      height: rem(42),
+      display: 'flex',
+      alignItems: 'center',
+      width: '100%',
+    },
+
+    ...theme.fn.hover({
+      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+    }),
+  },
+
+  active: {
+    display: 'flex',
+    alignItems: 'center',
+    height: '100%',
+    paddingLeft: theme.spacing.md,
+    paddingRight: theme.spacing.md,
+    textDecoration: 'none',
+    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+    fontWeight: 500,
+    fontSize: theme.fontSizes.sm,
+    backgroundColor: 'whitesmoke',
 
     [theme.fn.smallerThan('sm')]: {
       height: rem(42),
@@ -125,6 +151,8 @@ const mockdata = [
 ]
 
 export function AppHeader() {
+  const pathName = usePathname()
+
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false)
   const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false)
   const { classes, theme } = useStyles()
@@ -155,53 +183,13 @@ export function AppHeader() {
             <MantineLogo size={30} />
 
             <Group sx={{ height: '100%' }} spacing={0} className={classes.hiddenMobile}>
-              <a href='#' className={classes.link}>
+              <Link href='./' className={pathName === '/' ? classes.active : classes.link}>
                 Home
-              </a>
-              <HoverCard width={600} position='bottom' radius='md' shadow='md' withinPortal>
-                <HoverCard.Target>
-                  <a href='#' className={classes.link}>
-                    <Center inline>
-                      <Box component='span' mr={5}>
-                        Features
-                      </Box>
-                      <IconChevronDown size={16} color={theme.fn.primaryColor()} />
-                    </Center>
-                  </a>
-                </HoverCard.Target>
+              </Link>
 
-                <HoverCard.Dropdown sx={{ overflow: 'hidden' }}>
-                  <Group position='apart' px='md'>
-                    <Text fw={500}>Features</Text>
-                    <Anchor href='#' fz='xs'>
-                      View all
-                    </Anchor>
-                  </Group>
-
-                  <Divider my='sm' mx='-md' color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
-
-                  <SimpleGrid cols={2} spacing={0}>
-                    {links}
-                  </SimpleGrid>
-
-                  <div className={classes.dropdownFooter}>
-                    <Group position='apart'>
-                      <div>
-                        <Text fw={500} fz='sm'>
-                          Get started
-                        </Text>
-                        <Text size='xs' color='dimmed'>
-                          Their food sources have decreased, and their numbers
-                        </Text>
-                      </div>
-                      <Button variant='default'>Get started</Button>
-                    </Group>
-                  </div>
-                </HoverCard.Dropdown>
-              </HoverCard>
-              <a href='#' className={classes.link}>
-                Learn
-              </a>
+              <Link href='/about' className={pathName === '/about' ? classes.active : classes.link}>
+                About Us
+              </Link>
               <a href='#' className={classes.link}>
                 Academy
               </a>
@@ -228,9 +216,9 @@ export function AppHeader() {
           <ScrollArea h={`calc(100vh - ${rem(60)})`} mx='-md'>
             <Divider my='sm' color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
-            <a href='#' className={classes.link}>
+            <Link href='./' className={classes.link}>
               Home
-            </a>
+            </Link>
             <UnstyledButton className={classes.link} onClick={toggleLinks}>
               <Center inline>
                 <Box component='span' mr={5}>
@@ -240,9 +228,9 @@ export function AppHeader() {
               </Center>
             </UnstyledButton>
             <Collapse in={linksOpened}>{links}</Collapse>
-            <a href='#' className={classes.link}>
-              Learn
-            </a>
+            <Link href='./about' className={classes.link}>
+              About Us
+            </Link>
             <a href='#' className={classes.link}>
               Academy
             </a>

@@ -1,11 +1,16 @@
 'use client'
-import { Button, Title } from '@mantine/core'
+
+import { AppFeature } from './AppFeature'
+import { AppHero } from './AppHero'
 
 export default function HomeContent() {
   return (
-    <div>
-      <Title order={3} color='red'>HomePage</Title>
-      <Button>Settings</Button>
-    </div>
+    <>
+      <AppHero />
+      <AppFeature
+        title='Integrate effortlessly with any technology stack'
+        description='Every once in a while, you’ll see a Golbat that’s missing some fangs. This happens when hunger drives it to try biting a Steel-type Pokémon.'
+      />
+    </>
   )
 }

@@ -5,7 +5,7 @@ import AppHeader from '@/client-components/AppHeader'
 export default function Home() {
   return (
     <main className={styles.main}>
-      <p>Hello Next.js 13</p>
+      <p className='header'>Hello Next.js 13</p>
       <AppHeader/>
     </main>
   )

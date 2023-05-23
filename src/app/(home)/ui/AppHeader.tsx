@@ -216,7 +216,7 @@ export function AppHeader() {
           <ScrollArea h={`calc(100vh - ${rem(60)})`} mx='-md'>
             <Divider my='sm' color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
-            <Link href='./' className={classes.link}>
+            <Link href='./' className={classes.link} onClick={closeDrawer}>
               Home
             </Link>
             <UnstyledButton className={classes.link} onClick={toggleLinks}>
@@ -228,7 +228,7 @@ export function AppHeader() {
               </Center>
             </UnstyledButton>
             <Collapse in={linksOpened}>{links}</Collapse>
-            <Link href='./about' className={classes.link}>
+            <Link href='./about' className={classes.link} onClick={closeDrawer}>
               About Us
             </Link>
             <a href='#' className={classes.link}>

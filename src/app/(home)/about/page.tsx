@@ -21,18 +21,18 @@ async function getData(): Promise<version> {
   // const res = await fetch("https://api.codingthailand.com/api/version", { // Incremental Static Regeneration (ISR)
   //   next: { revalidate: 10 }, // ดึงข้อมูลมาใหม่ทุกๆ 10 วินาที
   // });
-  const res = await fetch('https://api.codingthailand.com/api/version/v', {
+  const res = await fetch('https://api.codingthailand.com/api/version', {
     // Server-side rendering (SSR)
     cache: 'no-store', // ไม่ cache ข้อมูลจะอัปเดตทันที
   })
 
-    if (res.status === 404) {
-    notFound()
-    }
+    // if (res.status === 404) {
+    // notFound()
+    // }
   
-  // if (!res.ok) {
-  //   throw new Error('Failed to fetch data')
-  // }
+  if (!res.ok) {
+    throw new Error('Failed to fetch data')
+  }
 
   return res.json() as Promise<version>
 }

@@ -34,6 +34,7 @@ import {
 } from '@tabler/icons-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useRouter } from 'next/router'
 
 const useStyles = createStyles((theme) => ({
   link: {
@@ -190,9 +191,9 @@ export function AppHeader() {
               <Link href='/about' className={pathName === '/about' ? classes.active : classes.link}>
                 About Us
               </Link>
-              <a href='#' className={classes.link}>
+              <Link href='/dashboard' className={classes.link}>
                 Academy
-              </a>
+              </Link>
             </Group>
 
             <Group className={classes.hiddenMobile}>

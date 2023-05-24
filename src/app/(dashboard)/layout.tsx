@@ -1,27 +1,19 @@
-import "../globals.css";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
+import Providers from '../components/Providers'
+import DLayout from './components/DLayout'
 
 export const metadata = {
-  title: "Dashboard Page",
-  description: "By Next.js",
-};
+  title: 'Dashboard Page',
+  description: 'By Next.js',
+}
 
-export default function DashboardLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <h1>Dashboard Header</h1>
-        <hr />
-        {children}
-        <hr />
-        <h1>Dashboard Footer</h1>
+    <html lang='en'>
+      <body>
+        <Providers>
+          <DLayout>{children}</DLayout>
+        </Providers>
       </body>
     </html>
-  );
+  )
 }
